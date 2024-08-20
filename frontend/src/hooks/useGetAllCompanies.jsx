@@ -16,10 +16,6 @@ const useGetAllCompanies = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(token);
-        console.log("called");
-
-        console.log(res?.data, "response data");
         if (res.data.success) {
           dispatch(setCompanies(res.data.companies));
         }

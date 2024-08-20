@@ -25,10 +25,6 @@ const Login = () => {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-
-  const token = document.cookie.split("=")[1];
-  console.log("token",token);
-  localStorage.setItem("token", token);
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -39,6 +35,7 @@ const Login = () => {
         },
         withCredentials: true,
       });
+      localStorage.setItem("token",res.data.token);
       if (res.data.success) {
 
         dispatch(setUser(res.data.user));
