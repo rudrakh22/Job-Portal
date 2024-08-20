@@ -14,11 +14,14 @@ const CompanyCreate = () => {
     const navigate = useNavigate();
     const [companyName, setCompanyName] = useState();
     const dispatch = useDispatch();
+    const token=localStorage.getItem("token");
+    console.log("token",token);
     const registerNewCompany = async () => {
         try {
             const res = await axios.post(`${COMPANY_API_END_POINT}/register`, {companyName}, {
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    Authorization:`Bearer ${token}`,
                 },
                 withCredentials:true
             });
